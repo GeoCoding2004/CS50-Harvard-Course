@@ -1,0 +1,154 @@
+{% extends "layout.html" %}
+
+{% block title%}
+Budget
+{% endblock%}
+
+{% block body%}
+
+<body class = "noscroll" id = "budgetbody">
+    <form action = "/budget" method = "POST" class = "expensesform budgetform">
+
+      <h2> <strong> Manage your budget by filling the form below </strong></h2>
+      <li style = "color: red"> <strong> if there is no data to fill the box, please type 0.
+        You can't fill the form more than one time for a single month.</strong></li>
+
+        <br>
+      <p class = "subtitles"> 1-Your income:</p>
+        <div class = "flex form-inline">
+            Paycheck:<span class = "flexcurrency"> $ </span>
+              <input type="number" step="0.01" id="paycheck" name="paycheck" required>
+          </div>
+        <div class = "flex">
+            Other sources of income:<span class = "flexcurrency"> $ </span>
+              <input type="number" step="0.01" id="otherincome" name="otherincome" required>
+        </div>
+        <br>
+        <p class = "subtitles">2-Spendings:</p>
+        <div class = "flex">
+            Rent:<span class = "flexcurrency"> $ </span>
+              <input type="number" step="0.01" id="rent" name="rent" required>
+        </div>
+        <div class = "flex">
+            Grocery:<span class = "flexcurrency"> $ </span>
+              <input type="number" step="0.01" id="grocery" name="grocery" required>
+        </div>
+        <div class = "flex">
+            Gas:<span class = "flexcurrency"> $ </span>
+              <input type="number" step="0.01" id="gas" name="gas" required>
+        </div>
+        <div class = "flex">
+            Car Loan:<span class = "flexcurrency"> $ </span>
+              <input type="number" step="0.01" id="carloan" name="carloan" required>
+        </div>
+        <div class = "flex">
+            House Loan:<span class = "flexcurrency"> $ </span>
+              <input type="number" step="0.01" id="houseloan" name="houseloan" required>
+        </div>
+        <div class = "flex">
+            Credit Card:<span class = "flexcurrency"> $ </span>
+              <input type="number" step="0.01" id="creditcard" name="creditcard" required>
+        </div>
+        <div class = "flex">
+            Others:<span class = "flexcurrency"> $ </span>
+              <input type="number" step="0.01" id="otherspending" name="otherspending" required>
+        </div>
+        <br>
+        <div class = "flex">
+          <p class = "subtitles"> 3-Date:</p>
+          Month: <span class = "flexcurrency"></span><input type = "number"  min = "1" max = "12" id = "month" name = "month" required>
+          Year: <span class = "flexcurrency"></span><input type = "number"  min = "1950"  id = "year" name = "year" required>
+        </div>
+        <br>
+
+        <button type="submit" class="btn btn-primary" id = "submit"> Submit </button>
+
+    </form>
+
+<div class = "budgetresults">
+      <ul >
+        <li>Your total income is: ${{totalincome}} </li>
+        <li>Your total spending is: ${{totalspending}}</li>
+        <li>You saved: ${{savings}}</li>
+        </ul>
+    </div>
+<hr class = "seperator">
+
+<form action = "/searchbudget" method = "POST" class = "searchbudgetform expensesform" >
+
+  <div class = "flex">
+    Search Your financial information:
+    Month: <span class = "flexcurrency"></span><input type = "number"  min = "1" max = "12" id = "searchmonth" name = "searchmonth" required>
+    Year: <span class = "flexcurrency"></span><input type = "number"  min = "1950"  id = "searchyear" name = "searchyear" required>
+  </div>
+  <button type="submit" class="btn btn-primary" id = "submit"> Search </button>
+
+
+{% for row in budgetsearch%}
+<br><br>
+<li> <span class = "subtitles"> Earnings:</span>  Paycheck: {{row[2]}}$ and Others: {{row[3]}}$ </li>
+
+  <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+  <script>
+    var xValues = ["Rent", "Grocery", "Gas", "Car Loan", "House Loan", "Credit Card", "Others"];
+    var yValues = [Math.round(({{row[4]}} / {{row[12]}})*100),
+    Math.round(({{row[5]}} / {{row[12]}})*100),
+    Math.round(({{row[6]}} / {{row[12]}})*100),
+    Math.round(({{row[7]}} / {{row[12]}})*100),
+    Math.round(({{row[8]}} / {{row[12]}})*100),
+    Math.round(({{row[9]}} / {{row[12]}})*100),
+    Math.round(({{row[10]}} / {{row[12]}})*100)];
+    var barColors = [
+      "#b91d47",
+      "#00aba9",
+      "#2b5797",
+      "#e8c3b9",
+      "#1e7145",
+      "#FFEE3F",
+      "#FF8F00"
+    ];
+
+    new Chart("myChart", {
+      type: "doughnut",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "Spendings on {{row[14]}}/{{row[15]}} in %"
+        }
+      }
+    });
+    </script>
+
+    <ol>
+      <strong>
+      <li style = "color:#b91d47">  Rent: {{row[4]}}$ </li>
+      <li style = "color:#00aba9">  Grocery: {{row[5]}}$ </li>
+      <li style = "color:#2b5797">  Gas: {{row[6]}}$ </li>
+      <li style = "color:#e8c3b9">  Car Loan: {{row[7]}}$ </li>
+      <li style = "color:#1e7145">  House Loan: {{row[8]}}$ </li>
+      <li style = "color:#FFEE3F">  Credit Card: {{row[9]}}$ </li>
+      <li style = "color:#FF8F00">  Others: {{row[10]}}$ </li>
+      </strong>
+    </ol>
+
+{% endfor %}
+</form>
+</body>
+
+<!-- we can scroll again when the page is completely loaded -->
+<script>
+    budgetbody = document.getElementById("budgetbody");
+    window.addEventListener("load", function(){
+        budgetbody.classList.remove("noscroll");
+    })
+</script>
+
+
+{% endblock %}

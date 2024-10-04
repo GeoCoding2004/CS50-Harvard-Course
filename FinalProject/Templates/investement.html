@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title%}
+Investement
+{% endblock%}
+
+{% block body%}
+
+<body class = "noscroll" id = "bodyinvestement">
+
+<div class="card investementcard" style="width: 30rem;">
+    <img class="card-img-top" src="/static/Jimrohn.jpeg" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title"> Jim Rohn Said:</h5>
+        <p class="card-text ">"To become financially independent you must turn part of your income into capital;
+        turn capital into enterprise; enterprise into profit; turn profit into investment;
+            and turn investment into financial independence."—Jim Rohn.</p>
+    </div>
+</div>
+
+
+<h5 class = "formheading"> To help you to achieve your financial freedom and guide you through this financial journey, we have set a little form
+    to fill so you know how much you need to contribute per month to achieve you financial goal.
+</h5>
+
+    <form action = "/investement" method = "POST" class = "expensesform investementform">
+
+        <div class = "flex">
+            My long-term investement goal is: <span class = "flexcurrency"> $ </span>
+            <input type="number" step="0.01" id="investement" name="investement" min = "0">
+        </div>
+
+        <div class = "flex">
+            I want to achieve this goal in: <span class = "flexcurrency"></span>
+            <input type="number" id="years" name="years" min = "1" > years
+        </div>
+
+        <div class = "flex">
+            I already have: <span class = "flexcurrency"> $ </span>
+            <input type="number" step="0.01" id="current" name="current" min = "0"> invested towards my goal.
+        </div>
+
+        <div class = "flex">
+            My possible long-term return is approximately: <span class = "flexcurrency"></span>
+            <input type="number" step="0.01" id="possiblereturn" name="possiblereturn" min = "0">
+            <span class = "percentagereturn">%</span>
+        </div>
+
+    <ul style="color: red"> <li> assuming a 2% inflation per year </li></ul>
+
+        <button type="submit" class="btn btn-primary" id = "submit" > Submit </button>
+
+        <p class = "finalphraseinvestement"> {{firsthalfofphrase}}<strong>{{pmt}}</strong> {{secondhalfofphrase}}</p>
+
+    </form>
+</body>
+
+
+<script>
+    bodyinvestement = document.getElementById("bodyinvestement");
+    window.addEventListener("load", function(){
+        bodyinvestement.classList.remove("noscroll");
+    })
+</script>
+
+
+{% endblock %}

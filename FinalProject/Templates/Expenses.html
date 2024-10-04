@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title%} Expenses {% endblock%}
+
+{% block body %}
+
+<body class = "noscroll" id = "expensesbody">
+  <!-- this layout is called a card. To change things in it we go to bootstrap cards to change colors, size,...-->
+  <form  action = "/expenses"  method = "POST">
+    <div class="card text-white bg-info mb-3 card border-dark mb-3 expensescard">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="/static/brokeperson.jpg" class="card-img">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title border-success"> Your expenses are a Problem ?</h5>
+              <p class="card-texts">
+                You arrive at the end of the month not having a single penny left.You don't have time to calculate and manage all your monthly expenses!!
+                You want to invest some of your money, but you don't know how to calculate your investement returns and how much you should invest.
+                Try out our <a href = "/budget"> budget tracking system </a> to help you keep track of your expenses. And don't forget to check out our
+                <a href = "/investement"> Investement contributions system </a> to help you get a better understanding about your investement and your possible gains.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </form>
+
+</body>
+
+
+<script>
+  expensesbody = document.getElementById("expensesbody");
+  window.addEventListener("load", function(){
+    expensesbody.classList.remove("noscroll");
+  })
+</script>
+
+
+
+ {% endblock %}

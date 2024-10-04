@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+
+{% block title%} Test {% endblock%}
+
+{% block body %}
+
+<!-- Javascript script-->
+<script  type="text/javascript" src = "static/script.js"></script>
+
+<body class = "noscroll" id = "bodyquiz">
+    <div class = "backgroundimagequiz">
+    <!-- mc stands for multiple choice-->
+        <form action = "/iqtest" method = "POST" name = "quiz" id = "quiz" >
+            <p class = "title"> Test out your general knowledge with this test. </p>
+
+            <div class = "allquiz">
+
+                <!-- first question-->
+                <div class = "question"> 1- Which app has the most total users?</div>
+                <input type="radio" id="mc" name="question1" value="Instagram">
+                <label name = "correct" for="Instagram"> Instagram</label><br>
+                <input type="radio" id="mc" name="question1" value="Facebook">
+                <label  name = "incorrect" for="Facebook"> Facebook</label><br>
+                <input type="radio" id="mc" name="question1" value="Snapchat">
+                <label  name = "incorrect" for="Snapchat"> Snapchat</label><br>
+                <input type="radio" id="mc" name="question1" value="Twitter">
+                <label  name = "incorrect" for="Twitter"> Twitter</label>
+
+                <!-- second question-->
+                <div class = "question"> 2- What is the biggest planet in our solar system? </div>
+                <input type="radio" id="mc" name="question2" value="Mars">
+                <label name = "incorrect" for="Mars"> Mars</label><br>
+                <input type="radio" id="mc" name="question2" value="Earth">
+                <label  name = "incorrect" for="Earth"> Earth</label><br>
+                <input type="radio" id="mc" name="question2" value="Venus">
+                <label  name = "incorrect" for="Venus"> Venus</label><br>
+                <input type="radio" id="mc" name="question2" value="Jupiter">
+                <label  name = "correct" for="Jupiter"> Jupiter</label><br>
+
+                <!-- third question-->
+                <div class = "question"> 3- How many colors are there in a rainbow? </div>
+                <input type="radio" id="mc" name="question3" value="5">
+                <label name = "incorrect" for="5"> 5</label><br>
+                <input type="radio" id="mc" name="question3" value="6">
+                <label  name = "incorrect" for="6"> 6</label><br>
+                <input type="radio" id="mc" name="question3" value="7">
+                <label  name = "correct" for="7"> 7</label><br>
+                <input type="radio" id="mc" name="question3" value="8">
+                <label  name = "incorrect" for="8"> 8</label><br>
+
+                <!-- forth question-->
+                <div class = "question"> 4- What is the average weight of the human brain? </div>
+                <input type="radio" id="mc" name="question4" value="1kg">
+                <label name = "incorrect" for="1kg"> 1kg</label><br>
+                <input type="radio" id="mc" name="question4" value="4kg">
+                <label  name = "correct" for="4kg"> 4kg</label><br>
+                <input type="radio" id="mc" name="question4" value="8kg">
+                <label  name = "incorrect" for="8kg"> 8kg</label><br>
+                <input type="radio" id="mc" name="question4" value="12kg">
+                <label  name = "incorrect" for="12kg"> 12kg</label><br>
+
+                <!-- fifth question-->
+                <div class = "question"> 5- What EU country has the largest population? </div>
+                <input type="radio" id="mc" name="question5" value="France">
+                <label name = "incorrect" for="France"> France</label><br>
+                <input type="radio" id="mc" name="question5" value="Spain">
+                <label  name = "incorrect" for="Spain"> Spain</label><br>
+                <input type="radio" id="mc" name="question5" value="Greece">
+                <label  name = "incorrect" for="Greece"> Greece</label><br>
+                <input type="radio" id="mc" name="question5" value="Germany">
+                <label  name = "correct" for="Germany"> Germany</label><br>
+
+                <!-- sixth question-->
+                <div class = "question"> 6- What is the world's biggest island? </div>
+                <input type="radio" id="mc" name="question6" value="Madagascar">
+                <label name = "incorrect" for="Madagascar"> Madagascar</label><br>
+                <input type="radio" id="mc" name="question6" value="Greenland">
+                <label  name = "correct" for="Greenland"> Greenland</label><br>
+                <input type="radio" id="mc" name="question6" value="New Guinea">
+                <label  name = "incorrect" for="New Guinea"> New Guinea</label><br>
+                <input type="radio" id="mc" name="question6" value="Borneo">
+                <label  name = "incorrect" for="Borneo"> Borneo</label><br>
+
+                <!-- seventh question -->
+                <div class = "question"> 7- What is the driest continent? </div>
+                <input type="radio" id="mc" name="question7" value="Antarctica">
+                <label name = "correct" for="Antarctica"> Antarctica</label><br>
+                <input type="radio" id="mc" name="question7" value="Africa">
+                <label  name = "incorrect" for="Africa"> Africa</label><br>
+                <input type="radio" id="mc" name="question7" value="Asia">
+                <label  name = "incorrect" for="Asia"> Asia</label><br>
+                <input type="radio" id="mc" name="question7" value="America">
+                <label  name = "incorrect" for="America"> America</label><br>
+
+                <!-- 8th-->
+                <div class = "question"> 8- What gas makes soda bubbly?</div>
+                <input type="radio" id="mc" name="question8" value="Carbon dioxide">
+                <label name = "correct" for="Carbon dioxide"> Carbon dioxide</label><br>
+                <input type="radio" id="mc" name="question8" value="Oxygen">
+                <label  name = "incorrect" for="Oxygen"> Oxygen</label><br>
+                <input type="radio" id="mc" name="question8" value="Nitrogen">
+                <label  name = "incorrect" for="Nitrogen"> Nitrogen</label><br>
+                <input type="radio" id="mc" name="question8" value="Methane">
+                <label  name = "incorrect" for="Methane"> Methane</label><br>
+
+                <br>
+                <p class = "note"> Note: For the text questions, please capitalize the first letter of your answer.</p>
+                <!-- 9th question-->
+                <div class = "question"> 9- What does a seismologist study?</div>
+                <input type = "text" id="question9" name = "question9">
+
+                <!-- 10th question-->
+                <div class = "question"> 10- Which country has a red flag with a green star in the middle?</div>
+                <input type = "text" id="question10" name = "question10">
+                <br> <br>
+                <button type="button" class="btn btn-primary submitquiz" id = "submit" onclick = "check()"> Submit </button>
+                <div id = "output" class = "hidden"></div>
+            </div>
+        </form>
+    </div>
+</body>
+
+
+<script>
+    bodyquiz = document.getElementById("bodyquiz");
+    window.addEventListener("load", function(){
+        bodyquiz.classList.remove("noscroll");
+    })
+</script>
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title%}
+Warning
+{% endblock%}
+
+{% block body%}
+
+<img src = "/static/realoops4.png" class = "errorimage">
+<div class = "oops"> OOPS!</div>
+{% for message in get_flashed_messages() %}
+    <p class = "errormessage"> {{message}} </p>
+{% endfor %}
+
+
+
+{% endblock %}

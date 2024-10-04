@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title%} Your Portfolio {% endblock%}
+
+{% block body %}
+
+{% for row in info %}
+<div class = "backgroundimageallinfo">
+    <div class = "allinfotext">
+        <p class = "titlefortextallinfo" > Hello, </p>
+        <p class = "subtitlefortextallinfo">  a bit about me: </p>
+        <p> My name is {{row[2]}} {{row[3]}}. I'm {{row[7]}} years old and currently living in {{row[5]}}, {{row[4]}} </p>
+
+        {% if row[8] and row[9] %}
+        <p> I am currently {{row[8]}} and  {{row[9]}} in the {{row[10]}} field </p>
+
+        {% elif row[8] %}
+        <p>  I am currently {{row[8]}} in the {{row[10]}} field </p>
+        {% elif row[9] %}
+        <p> I am currently {{row[9]}} {{row[10]}} in college. </p>
+        {% else%}
+
+        {% endif %}
+
+        <p> Activities are a crucial part of my everyday life. They help me to reduce stress and anxiety
+            as well as change my mood completely. My favorite activities are {{row[11]}}.
+        </p>
+
+        <p>
+            Qualities are important for every person as they can help him in multiple situations and can guarantee
+            respect and appreciation. My most relevant qualities are {{row[6]}}.
+        </p>
+
+        <p>
+            I am a very talented person that has multiple skills in multiple fields. My major ones are
+            {{row[12]}}
+        </p>
+
+        <p>  And finally, I shouldn't forget to mention some of my experiences: {{row[13]}}. </p>
+    </div>
+    {% endfor %}
+
+        <div class = "inputimageform">
+            <div id = "display_image"></div><br>
+            <label for="image_input"  style = "color: gray"> <strong> Upload your photo: </strong></label>
+            <input type = "file" id = "image_input" name = "image_input"  accept = "image/png, image/jpg, image/jpeg" value = "Upload your photo">
+        </div>
+
+        <!-- we put the script below the div so the script can read the uploaded image-->
+
+    <!-- Javascript script-->
+    <script  type="text/javascript" src = "static/script.js"></script>
+
+</div>
+
+{% endblock %}

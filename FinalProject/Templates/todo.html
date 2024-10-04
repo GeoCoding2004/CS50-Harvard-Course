@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% block title%} To_Do {% endblock%}
+
+{% block body%}
+
+    <!-- create a task-->
+    <form action = "/todo" method = "POST" class = "todo-form">
+        <h2> Create your task </h2>
+        <label for = "task" class = "space"> 1- What do you want to remember? </label>
+        <input type="text" id="task" name="task" required> <br>
+        <label for="birthday" class = "space"> 2- When do you want to achieve this task?</label>
+        <input type="date" id="birthday" name="birthday" required> <br>
+        <label for="importance" class = "space"> 3- How much is this task important to you? </label>
+        <select id="importance" name = "importance" required>
+            <option value = "choose" selected disabled>Choose..</option>
+            <option value = "High priority">High priority</option>
+            <option value = "Medium priority" > Medium priority </option>
+            <option value = "Low priority" > Low priority </option>
+        </select> <br>
+        <button type="submit" class="btn btn-primary addtask space" id = "submit"> Create task </button>
+    </form>
+
+    <h2 class = "searchyourtask"> Search Your task </h2>
+
+    <!-- search task by name of the task-->
+    <form  action = "/searchtodobyname" method = "POST" class = "searchtodobyname">
+
+        <label for = "searchtask" class = "space"> Search by task </label>
+        <input type="text" id="searchtask" name="searchtask" required> <br>
+        <button type="submit" class="btn btn-primary addtask space searchtaskbutton" id = "submit"> Search </button>
+    </form>
+
+    <!-- search task by date-->
+    <form  action = "/searchtodobydate" method = "POST"  class = "searchtodobydate">
+
+        <label for = "searchbydate" class = "space"> Search by date </label>
+        <input type="text" id="searchbydate" name="searchbydate" required> <br>
+        <button type="submit" class="btn btn-primary addtask space searchtaskbutton" id = "submit"> Search </button>
+    </form>
+
+    <!-- search task by priority-->
+    <form  action = "/searchtodobypriority" method = "POST" class="searchtodobypriority" >
+        <label for = "searchbypriority" class = "space"> Search by priority </label>
+        <select id="searchbypriority" name = "searchbypriority" required>
+            <option value = "choose" selected disabled>Choose..</option>
+            <option value = "High priority">High priority</option>
+            <option value = "Medium priority" > Medium priority </option>
+            <option value = "Low priority" > Low priority </option>
+        </select> <br>
+        <button type="submit" class="btn btn-primary addtask space searchtaskbutton" id = "submit"> Search </button>
+    </form>
+
+    <!-- create task table-->
+    <table  class = "todo-table">
+        <thead>
+            <th> All Tasks </th>
+            <th> Date</th>
+            <th> Importance</th>
+            <th> Status </th>
+        </thead>
+        <tbody>
+            <tr>
+                {% for row in todo%}
+                <td> {{row[2]}} </td>
+                <td> {{row[3]}} </td>
+
+                {% if row[4] == "Low priority" %}
+                <td> <font color="green"> <strong> <ul> <li> {{row[4]}} </li> </ul>  </strong>  </font></td>
+                {% elif row[4] == "High priority" %}
+                <td> <font color="red"> <strong> <ul> <li> {{row[4]}} </li> </ul>  </strong>  </font></td>
+                {% elif row[4] == "Medium priority" %}
+                <td> <font color="orange"> <strong> <ul> <li> {{row[4]}} </li> </ul>  </strong>  </font></td>
+                {% else %}
+                <td> {{row[4]}} </td>
+                {% endif %}
+                <td> <a href = "/delete/{{row[0]}}" class = "completetask"> Complete</a> </td>
+            </tr>
+                {% endfor%}
+        </tbody>
+    </table>
+    <!-- search table-->
+    <table  class = "searchtable">
+        <thead>
+            <th> All Tasks </th>
+            <th> Date</th>
+            <th> Importance</th>
+            <th> Status </th>
+        </thead>
+
+        <tbody>
+            <tr>
+                {% for row in searchname%}
+                <td> {{row[2]}} </td>
+                <td> {{row[3]}} </td>
+
+                {% if row[4] == "Low priority" %}
+                <td> <font color="green"> <strong> <ul> <li> {{row[4]}} </li> </ul>  </strong>  </font></td>
+                {% elif row[4] == "High priority" %}
+                <td> <font color="red"> <strong> <ul> <li> {{row[4]}} </li> </ul>  </strong>  </font></td>
+                {% elif row[4] == "Medium priority" %}
+                <td> <font color="orange"> <strong> <ul> <li> {{row[4]}} </li> </ul>  </strong>  </font></td>
+
+                {% else %}
+                <td> {{row[4]}} </td>
+                {% endif %}
+
+                <td> <a href = "/delete/{{row[0]}}" class = "completetask"> Complete</a> </td>
+            </tr>
+                {% endfor%}
+        </tbody>
+    </table>
+ {% endblock %}

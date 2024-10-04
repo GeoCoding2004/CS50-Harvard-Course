@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title%}
+Log In
+{% endblock%}
+
+{% block body%}
+<div class = "backgroundimagelogin">
+    <form action="/login" method="post" class = "loginform">
+        <h2> Sign in</h2>
+        <h6> Check out the features that "My life" has to offer.</h6>
+            <div class="mb-3 ">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto username" id="username" name="username" placeholder="Username" type="text">
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+            </div>
+        <button class="btn btn-primary login" type="submit">Sign In</button>
+
+    <div class = "noaccount"> Don't have an account? <a class = "linklogin" href = "/register"> Sign up</a></div>
+    </form>
+</div>
+
+{% endblock %}

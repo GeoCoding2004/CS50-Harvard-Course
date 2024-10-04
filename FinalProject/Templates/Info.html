@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+
+{% block title%}
+Info
+{% endblock%}
+
+{% block body%}
+
+
+<body class = "noscroll" id = "infoquiz">
+  <div class = "backgroundforinfo">
+    <p class = "titleinfo"> Fill out this form with some basic information, and let us make you a perfect webpage that describes you</p>
+
+    <form action = "/info" method = "post" class = "infoform">
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="firstname" class = "infosubtitles" >First Name</label>
+          <input type="text" class="form-control" id="firstname" placeholder="First Name" name = "firstname" >
+        </div>
+        <div class="form-group col-md-4">
+          <label for="lastname" class = "infosubtitles">Last Name</label>
+          <input type="text" class="form-control" id="lastname" placeholder="Last Name" name = "lastname" >
+        </div>
+      </div>
+      <div class="form-group col-md-8">
+        <label for="country" class = "infosubtitles"> Your Country</label>
+        <input type="text" class="form-control" id="country" placeholder="Country" name ="country" >
+      </div>
+      <div class="row">
+        <div class="form-group col-md-3">
+          <label for="city" class = "infosubtitles">City</label>
+          <input type="text" class="form-control" id="city" name = "city" placeholder = "City" >
+        </div>
+        <div class="form-group col-md-4">
+          <label for="qualities" class = "infosubtitles"> Your qualities</label>
+          <input type="text" class="form-control" id="qualities" placeholder="Qualities:" name = "qualities" >
+        </div>
+        <div class="form-group col-md-2">
+          <label for="age" class = "infosubtitles">Age</label>
+          <input type="number" class="form-control" id="age" name = "age" min = "1" >
+        </div>
+      </div>
+
+      <br>
+
+        <span class = "infosubtitles" > You are :</span>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input " type="checkbox" id="working" value="working" name = "working">
+          <label class="form-check-label infosubtitles" for="working" > Working </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input " type="checkbox" id="studying" value="studying" name = "studying">
+          <label class="form-check-label infosubtitles" for="studying" > Studying </label>
+        </div>
+
+
+      <br>
+      <br>
+      <div class="form-group col-md-8">
+        <label for="field" class = "infosubtitles"> Work/Study in which field</label>
+        <input type="text" class="form-control" id="field" placeholder="Field of Study/Work" name = "field" >
+      </div>
+
+      <br>
+      <div class="form-group col-md-8">
+        <label for="activities" class = "infosubtitles"> Activities you love the most</label>
+        <input type="text" class="form-control" id="activities" placeholder="Activities:" name = "activities" >
+      </div>
+
+      <br>
+      <div class="form-group col-md-8">
+        <label for="skills" class = "infosubtitles"> Your most important skills</label>
+        <input type="text" class="form-control" id="skills" placeholder="Skills:" name = "skills" >
+      </div>
+      <br>
+      <div class="form-group col-md-8">
+        <label for="experience" class = "infosubtitles"> Your experiences </label>
+        <input type="text" class="form-control" id="experience" placeholder="Experience:" name = "experience" >
+      </div>
+      <br>
+      <p class = "infosubtitles"> If you have already filled the form and want to view your page, proceed immediately by submitting the form.</p>
+      <button type="submit" class="btn btn-primary" id = "submit"> Submit </button>
+    </form>
+  </div>
+</body>
+
+<script>
+  infoquiz = document.getElementById("infoquiz");
+  window.addEventListener("load", function(){
+      infoquiz.classList.remove("noscroll");
+  })
+</script>
+
+{% endblock %}
